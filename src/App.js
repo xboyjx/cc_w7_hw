@@ -5,7 +5,7 @@ import ImageContainer from './containers/ImageContainer';
 function App() {
   return (
     <div>
-      <h1>API app</h1>
+      <h1>Pluto images</h1>
       <ImageContainer />
     </div>
   );

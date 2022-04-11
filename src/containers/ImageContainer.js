@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 
 
 const ImageContainer = () => {
-    const[imgGalUrl, setImgGalUrl] =useState([])
+    const[imgGalUrl, setImgGalUrl] =useState()
     const[filteredImgGal, setFilteredImgGal] = useState()
     const[imgUrl, setImgUrl] = useState()
 
@@ -10,13 +10,13 @@ const ImageContainer = () => {
         getImgGalUrl();
         getImgUrl();
         // filterImgUrl();
-    },)
+    })
 
     const getImgGalUrl = function() {
-        fetch('https://images-api.nasa.gov/search?q=orion')
+        fetch('https://images-api.nasa.gov/search?q=pluto')
         .then(res => res.json())
-        // .then(imageGal => console.log(imageGal.collection.items[0].href))
-        .then(imageGal => setImgGalUrl(imageGal.collection.items[0].href))
+        // .then(imageGal => console.log(imageGal.collection.items[0].data[0].description))
+        .then(imageGal => setImgGalUrl(imageGal.collection.items[Math.floor(Math.random()*imageGal.collection.items.length)].href))
     }
 
     const getImgUrl = function(){
@@ -39,8 +39,9 @@ const ImageContainer = () => {
 
     return (
         <div>
-            <h2>This works</h2>
-            <img src={filteredImgGal} />
+            <h2>Random image</h2>
+            <img src={filteredImgGal} /><br />
+            {/* <p>{imgGalUrl.data[0].description}</p> */}
             <button onClick={getNewImg}>New image</button>
         </div>
     )
